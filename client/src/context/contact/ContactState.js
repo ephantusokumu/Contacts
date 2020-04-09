@@ -32,11 +32,10 @@ const ContactState = props =>{
             id:3,
             name: 'Ephaccntus Okumu',
             email: 'eohnet@gccmail.com',
-            phone: '+2547156cc6336467',
+            phone: '+2547156cc6336 467',
             type: 'profesional'
-        }
-
-        ]
+        } ],
+        current: null
     };
  const [state, dispatch] = useReducer(contactReducer, initialState);
 
@@ -53,8 +52,14 @@ const ContactState = props =>{
 };
 
  //set current cotnatc
+ const setCurrent = contact =>{
+    dispatch({type: SET_CURRENT, payload:contact});
+};
 
  //clear
+ const clearCurrent = () =>{
+    dispatch({type: SET_CURRENT});
+};
 
  //update
 
@@ -64,9 +69,11 @@ const ContactState = props =>{
  return (
      <ContactContext.Provider 
      value={{
-         contacts:state.contacts,
+         contacts: state.contacts,
+         current:state.current,
          addContact,
-         deleteContact
+         deleteContact,
+         clearCurrent
      }}>
     {props.children}
      </ContactContext.Provider>
